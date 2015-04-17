@@ -1,6 +1,4 @@
-/Pow.class
-/SearchA2DMatrix.class
-/SearchInsertPosition.class
-/Sqrt.class
-/searchForARange.class
-/searchInRotatedSortedArray.class
+/FindPeakElement.class
+/FindMinimumInRotatedSortedArray.class
+/FindMinimumInRotatedSortedArrayII.class
+/SearchInRotatedSortedArrayII.class
