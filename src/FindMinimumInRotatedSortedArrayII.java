@@ -26,38 +26,13 @@ public class FindMinimumInRotatedSortedArrayII {
 	}
 
 	public int findMin(int[] num) {
-		if (num == null || num.length == 0) {
-			return 0;
-		}
-		int len = num.length;
-		if (len == 1) {
-			return num[0];
-		} else if (len == 2) {
-			return Math.min(num[0], num[1]);
-		}
-
-		int start = 0;
-		int end = len - 1;
-
-		while (start + 1 < end) {
-			int mid = start + (end - start) / 2;
-			// 此种情况array是sort的，直接返回array的起点
-			if (num[start] < num[end]) {
-				return num[start];
-			}
-
-			// left side is sorted. CUT the left side.
-			if (num[mid] > num[start]) {
-				start = mid;
-				// left side is unsorted, right side is sorted. CUT the right
-				// side.
-			} else if (num[mid] < num[start]) {
-				end = mid;
-			} else{
-				start ++;
+		int min = num[0];
+		for(int i = 1; i < num.length; i++){
+			if(num[i] < min){
+				min = num[i];
 			}
 		}
-		return Math.min(num[start] , num[end]);
+		return min;
 	}
 
 }

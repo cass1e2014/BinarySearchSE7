@@ -19,7 +19,7 @@ public class Sqrt {
 
 	public static void main(String[] args) {
 		Sqrt s = new Sqrt();
-        System.out.println(s.sqrt(5));
+        System.out.println(s.sqrt(25));
         System.out.println(s.sqrt(2));
         System.out.println(s.sqrt(48));
         System.out.println(s.sqrt(50));

@@ -14,30 +14,32 @@
 public class Pow {
 
 	public static void main(String[] args) {
-		System.out.println(pow(2, 3));
 	}
 
 	// recursion
 	public static double pow(double x, int n) {
-		if (n == 0) {
+		if(n == 0){
 			return 1;
 		}
-
-		double value = pow(x, n / 2);
-
-		if (n % 2 == 0) {
-			return value * value;
-		} else {
-			return value * value * x;
+		
+		if(x == 0){
+			return 0;
 		}
-	}
-
-	public static double power(double x, int n) {
-		if (n < 0) {
-			return 1 / power(x, -n);
-		} else {
-			return power(x, n);
+		
+		if(n < 0){
+			double ret = pow(x, -(n + 1)) * x;
+			return (double)1 / ret;
 		}
+		
+		//二分
+		double ret = pow(x, n / 2);
+		ret = ret * ret;
+		
+		if(n % 2 != 0 ){
+			ret = ret * x;
+		}
+		
+		return ret;
 	}
 
 }

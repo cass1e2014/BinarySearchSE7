@@ -23,7 +23,7 @@
 public class FindMinimumInRotatedSortedArray {
 
 	public static void main(String[] args) {
-		int[] num = {3, 2, 1};
+		int[] num = {7, 1, 2, 3, 4, 5, 6};
 		System.out.println(findMin(num));
 	}
 
@@ -34,14 +34,19 @@ public class FindMinimumInRotatedSortedArray {
 		int start = 0;
 		int end = num.length - 1;
 		
-		while(start + 1 < end && num[start] >= num[end]){
+		while(start + 1 < end){
 			int mid = start + (end - start) / 2;
-			if(num[mid] > num[end]){
-				start = mid + 1;
+			if(num[mid] <= num[start]) { 
+				end = mid;
 			}else{
 				start = mid;
 			}
 		}
-		return num[start];
+		
+		if(num[start] < num[end]){
+			return num[start];
+		}else{
+			return num[end];
+		}
 	}
 }
