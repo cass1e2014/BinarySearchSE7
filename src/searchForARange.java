@@ -11,60 +11,67 @@ import java.util.Arrays;
 
 public class searchForARange {
 
-	public static int[] searchRange(int[] A, int target){
-		int bound[] = new int[2];
-		int start, end, mid;
-		
-		//left bound
-		start = 0;
-		end = A.length - 1;
-		while(start + 1 < end){
-			mid = start + (end - start)/2;
-			if(A[mid] > target){
-				end = mid;
-			}else if(A[mid] == target){
-				end = mid;//当mid位置的value和target相等时，因为要求左边边界，把mid位置赋给end
-			}else{
-				start = mid;
-			}
-		}
-		
-		if(A[start] == target){
-			bound[0] = start;
-		}else if(A[end] == target){
-			bound[0] = end;
-		}else{
-			bound[0] = bound[1] = -1;
-		}
-		
-		
-		//right bound
-		start = 0 ;
-		end = A.length - 1;
-		while(start + 1 < end){
-			mid = start + (end - start)/2;
-			if(A[mid] == target){
-				start = mid;//当mid位置的value和target相等的时候，因为要求右边边界，把mid位置给start
-			}else if(A[mid] > target){
-				end = mid;
-			}else{
-				start = mid;
-			}
-		}
-		
-		if(A[start] == target){
-			bound[1] = start;
-		}else if(A[end] == target){
-			bound[1] = end;
-		}else{
-			bound[1] = bound[0] = -1;
-		}
-		return bound;
-	}
+	public static int[] searchRange(int[] nums, int target) {
+        if(nums == null || nums.length == 0){
+            return null;
+        }
+        
+        int[] result = new int[2];
+        int start, end, mid;
+        //left bound ::
+        start = 0;
+        end = nums.length - 1;
+        while(start + 1 < end){
+            mid = start + (end - start) / 2;
+            if(nums[mid] > target){
+                end = mid;
+            }else if(nums[mid] == target){
+                //算左边界的时候，当mid的对应值等于target的时候，把end给mid
+                //这样就不会进入下一个while loop，left bound即确定
+                end = mid;
+            }else{
+                start = mid;
+            }
+        }
+        if(nums[start] == target){
+            result[0] = start;
+        }else if(nums[end] == target){
+            result[0] = end;
+        }else{
+            result[0] = result[1] = -1;
+            return result;
+        }
+        
+        //right bound ::
+         start = 0;
+         end = nums.length - 1;
+         while(start + 1 < end){
+             mid = start + (end - start) / 2;
+             if(nums[mid] > target) {
+                 end = mid;
+             }else if(nums[mid] == target){
+                 start = mid;
+             }else{
+                 start = mid;
+            }
+         }
+         
+         //要把nums[end] == target 写在nums[start] == target前面
+         //[2,2], 2 ==> return [0,1]
+         if(nums[end] == target){
+            result[1] = end;
+         }else if(nums[start] == target){
+            result[1] = start;
+         }else{
+            result[0] = result[1] = -1;
+            return result;
+         }
+         return result;
+    }
 	
 	public static void main(String[] args) {
-		int[] test = {5, 7, 7, 8, 8, 10};
-		int[] result = searchRange(test, 8);
+		int[] test = {2, 2};
+		int[] result = searchRange(test, 2);
 		System.out.println(Arrays.toString(result));
 	}
 

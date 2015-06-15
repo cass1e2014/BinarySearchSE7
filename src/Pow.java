@@ -17,29 +17,31 @@ public class Pow {
 	}
 
 	// recursion
-	public static double pow(double x, int n) {
-		if(n == 0){
-			return 1;
+	public double pow(double x, int n) {
+		if(n < 0){
+			return 1 / power(x, -n);
+		}else{
+			return power(x, n);
 		}
 		
+	}
+	
+	public double power(double x, int n){
 		if(x == 0){
 			return 0;
 		}
 		
-		if(n < 0){
-			double ret = pow(x, -(n + 1)) * x;
-			return (double)1 / ret;
+		if(n == 0){
+			return 1;
 		}
 		
-		//二分
-		double ret = pow(x, n / 2);
-		ret = ret * ret;
+		double v = power(x , n / 2);
 		
-		if(n % 2 != 0 ){
-			ret = ret * x;
+		if(n % 2 == 0){
+			return v * v;
+		}else{
+			return v * v * x;
 		}
-		
-		return ret;
 	}
 
 }
