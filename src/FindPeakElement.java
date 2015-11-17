@@ -1,40 +1,45 @@
 /**
- * There is an integer array which has the following features:
+ * A peak element is an element that is greater than its neighbors.
  * 
- * The numbers in adjacent positions are different. A[0] < A[1] && A[A.length -
- * 2] > A[A.length - 1]. We define a position P is a peek if A[P] > A[P-1] &&
- * A[P] > A[P+1]. Find a peak element in this array. Return the index of the
- * peak. Note The array may contains multiple peeks, find any of them.
+ * Given an input array where num[i] ≠ num[i+1], find a peak element and return
+ * its index.
  * 
- * Example [1, 2, 1, 3, 4, 5, 7, 6] return index 1 (which is number 2) or 6
- * (which is number 7)
+ * The array may contain multiple peaks, in that case return the index to any
+ * one of the peaks is fine.
  * 
- * Challenge Time complexity O(logN)
+ * You may imagine that num[-1] = num[n] = -∞.
+ * 
+ * For example, in array [1, 2, 3, 1], 3 is a peak element and your function
+ * should return the index number 2.
+ * 
  * 
  * @author cassie9082
  * 
  */
-
 public class FindPeakElement {
-	
-	/**
-	 * @param A: An integers array. ［BinarySearch]
-	 * @return: return any of peek positions. 关键 ：：可以返回任意peek值的位置！
-	 */
-	public int findPeak(int[] A) {
-		int point = 1;
-		int size = A.length;
-		while(point <= size){
-			int mid = (point + size) / 2;
-			if(A[mid] > A[mid - 1] && A[mid] > A[mid + 1]){
+	// binary search O(logN)
+	public int findPeakElement(int[] nums) {
+		if (nums == null || nums.length == 0) {
+			return 0;
+		}
+
+		int start = 0;
+		int end = nums.length - 1;
+		while (start + 1 < end) {
+			int mid = start + (end - start) / 2;
+			if (nums[mid] > nums[mid - 1] && nums[mid] > nums[mid + 1]) {
 				return mid;
-			}
-			if(A[mid] > A[mid - 1]){
-				point = mid + 1;
-			}else{
-				point = mid - 1;
+			} else if (nums[mid] < nums[mid - 1]) {
+				end = mid;
+			} else if (nums[mid] < nums[mid + 1]) {
+				start = mid;
 			}
 		}
-		return -1;
+
+		if (nums[start] > nums[end]) {
+			return start;
+		} else {
+			return end;
+		}
 	}
 }

@@ -31,25 +31,23 @@ public class SearchA2DMatrixII {
 	}
 
 	public static boolean searchMatrix(int[][] matrix, int target) {
-        if(matrix == null || matrix[0] == null || matrix.length == 0 || matrix[0].length == 0){
+		if(matrix == null || matrix[0] == null || matrix.length == 0 || matrix[0].length == 0){
             return false;
         }
         
-        int row = matrix.length - 1;
-        int column = matrix[0].length - 1;
-        int index_row = 0;
-        int index_column = column;
+        int m = 0;
+        int n = matrix[0].length - 1;
         int ele;
-        while(index_row < row + 1 && index_column + 1 > 0){
-            ele = matrix[index_row][index_column];
+        while(m < matrix.length && n >= 0){
+            ele = matrix[m][n];
             if(ele == target){
                 return true;
             }
             else if(target < ele){
-                index_column --;
+                n --;
             }
             else if(target > ele){
-                index_row ++;
+                m ++;
             }
         }
         return false;
