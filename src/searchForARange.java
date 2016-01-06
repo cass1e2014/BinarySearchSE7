@@ -50,7 +50,7 @@ public class searchForARange {
              if(nums[mid] > target) {
                  end = mid;
              }else if(nums[mid] == target){
-                 start = mid;
+                 start = mid;//算右边界的时候，当mid对应值等于target，把start给mid，这样会继续进入下一个while看是否还有nums[mid]==target
              }else{
                  start = mid;
             }
@@ -70,8 +70,8 @@ public class searchForARange {
     }
 	
 	public static void main(String[] args) {
-		int[] test = {2, 2};
-		int[] result = searchRange(test, 2);
+		int[] test = {5, 7, 7, 8, 8, 10};
+		int[] result = searchRange(test, 8);
 		System.out.println(Arrays.toString(result));
 	}
 

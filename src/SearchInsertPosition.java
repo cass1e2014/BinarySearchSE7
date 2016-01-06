@@ -34,7 +34,6 @@ public class SearchInsertPosition {
 		int start = 0;
 		int end = A.length - 1;
 		int mid = -1;
-		int count = 0;
 
 		if (target < A[0]) {
 			return 0;
@@ -45,10 +44,7 @@ public class SearchInsertPosition {
 		}
 
 		while (start + 1 < end) {
-			System.out.println("While" + count++);
 			mid = start + (end - start) / 2;
-			System.out.println("start = " + start + ", end = " + end
-					+ ", mid = " + mid);
 			if (A[mid] > target) {
 				end = mid;
 			} else if (A[mid] == target) {
@@ -57,10 +53,6 @@ public class SearchInsertPosition {
 				start = mid;
 			}
 		}
-
-		System.out.println("End While:");
-		System.out.println("start = " + start + ", end = " + end + ", mid = "
-				+ mid);
 
 		if (A[start] == target) {
 			return start;

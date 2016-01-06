@@ -31,9 +31,8 @@
  * 其中：行数rows=3，列数columns=4
  * 
  * 如上，这个就是将2D矩阵转化成1行数组的对应表。所以对于二分查找法的初始值为：low=0，high=rows*columns-1（总共数值的个数，
- * 因为从0开始所以减1）。而为了能够方便在given 2D
- * matrix找到需要比对的值，我们还是需要确定行数和列数，通过上表可以看出，行数是position
- * /columns，而列数是position%columns,
+ * 因为从0开始所以减1）。而为了能够方便在given 2D matrix找到需要比对的值，我们还是需要确定行数和列数，通过上表可以看出，
+ * 行数是position/columns，而列数是position%columns,
  * 这样一来，就能很容易的在原矩阵中定位到所需要的值。剩下其他的解题思路，就与二分查找法一模一样了。
  * 
  * 时间复杂度O(log(rows*columns))

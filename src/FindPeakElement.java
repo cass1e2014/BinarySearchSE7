@@ -11,7 +11,7 @@
  * 
  * For example, in array [1, 2, 3, 1], 3 is a peak element and your function
  * should return the index number 2.
- * 
+ * 找峰值
  * 
  * @author cassie9082
  * 
